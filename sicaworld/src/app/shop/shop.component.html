@@ -1,0 +1,101 @@
+<h2 style="display: inline-block;" i18n>應援市集</h2>
+
+<div class="loadingDiv" *ngIf="isLoading" style="background-image: url('../assets/icons/three mo_02.gif')">
+  &nbsp;
+</div>
+
+<div style="position: absolute; top: 0; right: 0;">
+  <button type="button" class="btn btn-light"
+          *ngIf="adminAccessRight"
+          (click)="backToReview()" i18n>查閱銷售紀錄</button>
+  <button type="button" class="btn btn-light"
+          (click)="backToMyOrders()" i18n>查閱我的紀錄</button>
+</div>
+
+<h3>所有收益一律扣除成本後, 全數用作往後的應援谷/活動日常運作, 詳情可查閱[能量圖]。</h3>
+<form>
+
+  <div class="container">
+    <div class="row" *ngFor="let msg of alertMessages; let msgIndex=index;">
+      <div class="col col-md-10">
+        <div class="alert alert-danger" role="alert">
+          {{msg}}
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngFor="let msg of infoMessages; let msgIndex=index;">
+      <div class="col col-md-10">
+        <div class="alert alert-info" role="alert">
+          {{msg}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="pagemode=='shop'">
+    <div  *ngFor="let item of items; let eventIndex=index;"
+          class='card' style="margin-bottom: 5px;">
+      <div class='card-body'>
+        <p class='card-title'>{{item.itemName}}</p>
+        <p class='card-title' *ngIf="item.filePath!=''">
+          <img  style="border-radius: 20px; width: 100%; max-width: 500px;"
+                src='{{ "https://fansconnect-idol.azurewebsites.net/api/shopimage/" + item.itemId + "?code=NYMr/MS73CVCycagYJmwTYYSGwo864LGSgCo0dlcJ3TdWqQLmp18sQ=="}}'>
+        </p>
+        <p style="font-size: 12pt;" [innerText]="item.itemDescription"></p>
+        <p class='card-text' *ngIf="item.price==0">多多益Si</p>
+        <p class='card-text' *ngIf="item.price>0">${{item.price}}</p>
+        <p class='card-text' style="float: right;">
+          <button class="btn btn-dark" type="button" (click)="changeOrder(item.itemId, -1)">-</button>
+          {{getOrderLineCount(item.itemId)}}
+          <button class="btn btn-dark" type="button" (click)="changeOrder(item.itemId, 1)">+</button>
+        </p>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" style="width: 95%; text-align: center;"
+            (click)="pay()"
+            i18n>付款 ${{getTotalAmountText()}}</button>
+  </div>
+
+  <div *ngIf="pagemode=='payment'">
+    <div class='card' style="margin-bottom: 5px;">
+      <div class='card-body'>
+        <h3 class="card-title">付款</h3>
+        <p>
+          過數資料:<br />
+          FPS ID: 5001789<br />
+          銀行轉帳Hang Seng Bank: 234-309060-882<br />
+          WONG Yxxx Fxxx<br />
+          過咗數之後cap圖🙇🏻‍♀️<br />
+          #sica世一
+        </p>
+        <br><br>
+
+        <h3 class="card-title">總數: ${{getTotalAmountText()}}</h3>
+        <div class="container">
+          <div class="row">
+            <div class='col col-md-4'><label class="form-label">圖片證明</label></div>
+            <div class="col col-md-8">
+              <div class="photo-container">
+                <input type="file" id="image_input" (change)="onFileSelected($event)">
+            </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-md-12">
+              <button type="button" class="btn btn-dark" style="float: left;" (click)="cancelEdit()" i18n>取消</button>
+              <button [disabled]="isUploading" type="button" class="btn btn-dark" style="float: right;" (click)="completeEdit()">完成</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br><br><br>
+  <button type="button" class="btn btn-light" style="float: right;"
+          (click)="backToMenu()" i18n>返回主頁</button>
+</form>
+
