@@ -11,6 +11,11 @@ import { ShopComponent } from './shop/shop.component';
 import { MyorderReviewComponent } from './myorder-review/myorder-review.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
+import { OrderReviewComponent } from './order-review/order-review.component';
+import { EventsComponent } from './events/events.component';
+import { EventFilter } from './filter/eventfilter';
+import { QuestionsKingComponent } from './questions-king/questions-king.component';
+import { QuestionsKingHomeComponent } from './questions-king-home/questions-king-home.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,12 @@ import { ProfileComponent } from './profile/profile.component';
     ShopComponent,
     MyorderReviewComponent,
     OrderFilter,
-    ProfileComponent
+    EventFilter,
+    ProfileComponent,
+    OrderReviewComponent,
+    EventsComponent,
+    QuestionsKingComponent,
+    QuestionsKingHomeComponent
   ],
   imports: [
     BrowserModule,

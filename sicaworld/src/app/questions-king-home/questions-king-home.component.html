@@ -1,0 +1,132 @@
+<div class="loadingDiv" *ngIf="isLoading" style="background-image: url('../assets/icons/three mo_02.gif')">
+  &nbsp;
+</div>
+
+<h2 i18n>常識鬥</h2>
+
+<div style="border-radius: 5px; background-color: white;">
+  <p>
+  遊戲方法:<br>
+  - 參加者每出一條有效題目有10分<br>
+  - 參加者答中一題有1分<br>
+  - 題目未能被3位參加者答中, 題目會無效<br>
+  - 題目被30位參加者答中後, 題目會無效<br>
+  - 如果題目的解釋不合理, 題目會作廢<br>
+  </p>
+</div>
+
+<div class="container">
+  <div class="row" *ngFor="let msg of alertMessages; let msgIndex=index;">
+    <div class="col col-md-10">
+      <div class="alert alert-danger" role="alert">
+        {{msg}}
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngFor="let msg of infoMessages; let msgIndex=index;">
+    <div class="col col-md-10">
+      <div class="alert alert-info" role="alert">
+        {{msg}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<form>
+  <div *ngIf="mode=='myquestions'" style="width: 90%; min-width: 300px; margin-bottom: 5px;">
+    <div style="text-align: center; ">
+      <button type="button" class="btn btn-info" style="font-size: 16pt;"
+              (click)="changeToDashboard()" i18n>排名榜</button>
+    </div>
+    <h3 style="color: white;">
+      我的有效題目
+    </h3>
+    <ul style="background: white; border-radius: 5px;">
+      <li *ngIf="myquestions.length==0">
+        你沒有有效題目。
+      </li>
+      <li *ngFor="let q of myquestions;let qIndex=index;">
+        {{qIndex+1}}. {{q.question}}<br>(1){{q.option1}} (2){{q.option2}} (3){{q.option3}} (4){{q.option4}}
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="mode=='dashboard'" style="width: 90%; min-width: 300px; margin-bottom: 5px;">
+    <div style="text-align: center;">
+      <button type="button" class="btn btn-info" style="font-size: 16pt;"
+              (click)="changeToMyQuestions()" i18n>我的有效題目</button>
+      <button [disabled]="myquestions.length>30" type="button" class="btn btn-primary" style="font-size: 16pt;"
+              (click)="addQuestion()" i18n>出新題目</button>
+      <button type="button" class="btn btn-success" style="font-size: 16pt;"
+              (click)="startGame()" i18n>開始挑戰</button>
+    </div>
+    <h3 style="color: white;">
+      排行榜
+    </h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">排名</th>
+          <th scope="col">TG名</th>
+          <th scope="col">已出題目</th>
+          <th scope="col">有效題目</th>
+          <th scope="col">已中題目</th>
+          <th scope="col">總分</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of players;let pIndex=index;">
+          <td>{{pIndex+1}}</td>
+          <td>{{p.tgName}}</td>
+          <td>{{p.questionsCount}}</td>
+          <td>{{p.vquestionsCount}}</td>
+          <td>{{p.answersCount}}</td>
+          <td>{{p.totalMarks}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="mode=='profile'" class='card' style="width: 90%; min-width: 300px; margin-bottom: 5px;">
+    <div class='card-body'>
+      <h3 class="card-title">
+        會員資料
+      </h3>
+
+      <div class="container">
+        <div class="row">
+          <div class='col col-md-4'>
+            <label class="form-label">TG Name<span class="required">*</span></label>
+          </div>
+          <div class="col col-md-8">
+            <input  type="text" maxlength="50" name="tgName" class="form-control"
+                    [(ngModel)]="editForm.tgName"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class='col col-md-4'>
+            <label class="form-label">TG Id</label>
+          </div>
+          <div class="col col-md-8">
+            <input  type="text" maxlength="50" name="tgId" class="form-control"
+                    [(ngModel)]="editForm.tgId"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-md-12">
+            <button type="button" class="btn btn-dark" style="float: left;" (click)="cancelEdit()" i18n>取消</button>
+            <button type="button" class="btn btn-dark" style="float: right;" (click)="completeEdit()">完成</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <button type="button" class="btn btn-light" style="float: right;"
+          (click)="backToMenu()" i18n>返回主頁</button>
+</form>

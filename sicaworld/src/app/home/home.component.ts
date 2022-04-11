@@ -54,11 +54,13 @@ export class HomeComponent implements OnInit {
 
   chatbotLockCount: number = 3
   gotoChatbot(): void{
+    /*
     this.chatbotLockCount -= 1;
     console.log("unlock chatbot: "+this.chatbotLockCount);
     if(this.chatbotLockCount<=0){
       this.router.navigate(['../chatbot'], {relativeTo: this.route});
     }
+    */
   }
 
   initPage(): void{
