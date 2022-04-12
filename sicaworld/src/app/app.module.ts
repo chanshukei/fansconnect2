@@ -16,6 +16,10 @@ import { EventsComponent } from './events/events.component';
 import { EventFilter } from './filter/eventfilter';
 import { QuestionsKingComponent } from './questions-king/questions-king.component';
 import { QuestionsKingHomeComponent } from './questions-king-home/questions-king-home.component';
+import { AddQuestionComponent } from './add-question/add-question.component';
+import { SupportitemComponent } from './supportitem/supportitem.component';
+import { MapComponent } from './map/map.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { QuestionsKingHomeComponent } from './questions-king-home/questions-king
     OrderReviewComponent,
     EventsComponent,
     QuestionsKingComponent,
-    QuestionsKingHomeComponent
+    QuestionsKingHomeComponent,
+    AddQuestionComponent,
+    SupportitemComponent,
+    MapComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
