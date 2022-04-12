@@ -20,6 +20,7 @@ import { AddQuestionComponent } from './add-question/add-question.component';
 import { SupportitemComponent } from './supportitem/supportitem.component';
 import { MapComponent } from './map/map.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
