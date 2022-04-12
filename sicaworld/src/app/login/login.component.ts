@@ -21,7 +21,12 @@ export class LoginComponent implements OnInit {
   constructor(
     private idolService: IdolService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private ngZone: NgZone
+  ) {
+    this.ngZone.run(()=>{
+      this.router.navigate(['../login'], {relativeTo: this.route});
+    });
   }
 
   public onSignIn(googleUser: gapi.auth2.GoogleUser) {
