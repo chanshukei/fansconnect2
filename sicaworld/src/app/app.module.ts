@@ -21,6 +21,11 @@ import { SupportitemComponent } from './supportitem/supportitem.component';
 import { MapComponent } from './map/map.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgChartsModule } from 'ng2-charts';
+import { DonationComponent } from './donation/donation.component';
+import { DonationReviewComponent } from './donation-review/donation-review.component';
+import { SupportItemFormComponent } from './support-item-form/support-item-form.component';
+import { LuckydrawComponent } from './luckydraw/luckydraw.component';
+import { DesignCompComponent } from './design-comp/design-comp.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,12 @@ import { NgChartsModule } from 'ng2-charts';
     AddQuestionComponent,
     SupportitemComponent,
     MapComponent,
-    DashboardComponent
+    DashboardComponent,
+    DonationComponent,
+    DonationReviewComponent,
+    SupportItemFormComponent,
+    LuckydrawComponent,
+    DesignCompComponent
   ],
   imports: [
     BrowserModule,
